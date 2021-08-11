@@ -1,0 +1,57 @@
+get()
+As soon we call the get() method, it will hit the database and return the original object.
+It returns null if no record is there in a database for the given identifier.
+
+
+load()
+The load() method returns a proxy object.
+It will not hit the database until we try to use that object(for example – access some property from the proxy object).
+It throws ObjectNotFound exception if no record is there in the database for a given identifier(if we try to access some property from the proxy object then only it will throw an exception).
+
+
+public class getvsload 
+{
+    public static void main( String[] args )
+    {
+       // get,load
+       
+       Configuration cfg= new Configuration();
+       cfg.configure("hibernate.cfg.xml);
+       SessionFactory factory=cfg.buildSessionFactory();
+       Session session=factory.openSession();
+       
+       
+       Student student=(student)session.load(Student.class,108);    
+       System.out.println(student.getName());                         //gives the value from db
+       
+       
+        Student student=(student)session.load(Student.class,108);     //proxy object 
+        
+        
+        
+        Student student=(student)session.load(Student.class,1008);    // gives  ObjectNotFoundException (no row exist)
+       System.out.println(student);
+       
+       
+       
+       Address ad=(Address)session.get(Address.class,2);
+       System.out.println(ad.getStreet()+":" +ad.getCity());      // gives value coz that data is present in db(stored in cache memory)
+       
+       Address ad1=(Address)session.get(Address.class,2);
+       System.out.println(ad1.getStreet()+":" +ad1.getCity());      //it wont hit again as it is already present.It uses same data.
+       
+       
+       Address ad=(Address)session.get(Address.class,2002);         //returns null if data is not present
+       System.out.println(ad.getStreet()+":" +ad.getCity()); 
+       
+       
+       
+       session.close();
+        session.close();
+        }
+        }
+       
+      
+      
+     
+      
