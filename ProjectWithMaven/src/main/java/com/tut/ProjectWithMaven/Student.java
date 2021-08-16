@@ -22,7 +22,7 @@ public class Student {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
