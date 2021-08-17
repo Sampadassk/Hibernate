@@ -6,13 +6,15 @@ import javax.persistence.Id;
 public class Student {
 	
 	@Id
-	private Integer id;
+	private int id;
 	
 	private String name;
 	
 	private String city;
 	
-	public Student(Integer id, String name, String city) {
+	private Certificate certi;
+	
+	public Student(int id, String name, String city) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,10 +24,10 @@ public class Student {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -39,6 +41,14 @@ public class Student {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	
+	public Certificate getCerti() {
+		return certi;
+	}
+	public void setCerti(Certificate certi) {
+		this.certi = certi;
 	}
 	@Override
 	public String toString() {
