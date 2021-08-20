@@ -19,10 +19,11 @@ public class MapDemo {
 	     q1.setQuestion("what is java?");
 	     
 	     
-	     Answer aws =new Answer();
-	     aws.setAnswerId(5678);
-	     aws.setAnswer("Java is a programming language");
-	     q1.setAnswer(aws);
+	     Answer answer =new Answer();
+	     answer.setAnswerId(5678);
+	     answer.setAnswer("Java is a programming language");
+	     answer.setQuestion(q1);
+	     q1.setAnswer(answer);
 	     
 	     
 	     Question q2=new Question();
@@ -30,10 +31,11 @@ public class MapDemo {
 	     q2.setQuestion("what is  collection framework?");
 	     
 	     
-	     Answer aws1 =new Answer();
-	     aws1.setAnswerId(8765);
-	     aws1.setAnswer("API to work with objects in java");
-	     q2.setAnswer(aws1);
+	     Answer answer1 =new Answer();
+	     answer1.setAnswerId(8765);
+	     answer1.setAnswer("API to work with objects in java");
+	     answer1.setQuestion(q2);
+	     q2.setAnswer(answer1);
 	     
 	     
 	   
@@ -43,13 +45,17 @@ public class MapDemo {
 	    
 	     s.save(q1);
 	     s.save(q2);
-	     s.save(aws1);
-	     s.save(aws);
+	     s.save(answer1);
+	     s.save(answer);
 	    
 	     
 	     
 	     
 	     tx.commit();  
+	     
+	     Question newQ = (Question) s.get(Question.class,1212);
+	     System.out.println(newQ.getQuestion());
+	     System.out.println(newQ.getAnswer().getAnswer());
 	     
 	     s.close(); 
 	     
