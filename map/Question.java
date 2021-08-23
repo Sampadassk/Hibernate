@@ -3,7 +3,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
+
 
 @Entity
 public class Question {
@@ -12,9 +14,10 @@ public class Question {
 	private int questionId;
 	private String question;
 	
-	@OneToOne
-	@JoinColumn(name="a_id")
-	private Answer answer;
+	@OneToMany(mappedBy="question")
+	private List<Answer> answers;
+	
+	
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -27,23 +30,25 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public Answer getAnswer() {
-		return answer;
+	
+	
+	public List<Answer> getAnswers() {
+		return answers;
 	}
-	public void setAnswer(Answer answer) {
-		this.answer = answer;
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+	
+	public Question(int questionId, String question,List<Answer> answers) {
+		super();
+		this.questionId = questionId;
+		this.question = question;
+		this.answers = answers;
 	}
 	public Question() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Question(int questionId, String question, Answer answer) {
-		super();
-		this.questionId = questionId;
-		this.question = question;
-		this.answer = answer;
-	}
-	
 	
 	
 
